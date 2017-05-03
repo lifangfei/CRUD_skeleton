@@ -7,5 +7,6 @@ new_users_needed.times do
   person = { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
   person[:email] = Faker::Internet.safe_email("#{person[:first_name]}.#{person[:last_name]}")
   user = User.new(person)
+  user.password = "xxx"
   user.save!
 end

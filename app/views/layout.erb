@@ -18,7 +18,18 @@
   <title></title>
 </head>
 <body>
-
+  <ul class="nav">
+    <li><a href="/">Home</a></li>
+    <% if session.key?(:id) == false%>
+      <li><a href="/users/new">Signup</a></li>
+      <li><a href="/sessions/new">Login</a></li>
+    <% end %>
+    <% if session[:id] %>
+      <li><a href="/users">All Users</a></li>
+      <li><a href="/users/<%=session[:id]%>">My Account</a></li>
+      <li><%= erb :"sessions/_delete"%></li>
+    <% end %>
+  </ul>
   <% if @errors %>
     <ul>
       <% @errors.each do |error| %>
@@ -26,6 +37,8 @@
       <% end %>
     </ul>
   <% end %>
+  <div class="container">
   <%= yield %>
+  </div>
 </body>
 </html>
