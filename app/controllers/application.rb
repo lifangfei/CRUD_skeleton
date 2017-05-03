@@ -1,5 +1,5 @@
 get '/' do
-  "Hello World"
+  erb :'index'
 end
 
 #index
@@ -19,7 +19,7 @@ end
 #create
 post '/users' do
   @user = User.new(params[:user])
-  @user.password = @user.hash_password
+  @user.password = @user.hashed_password
   @user.save
   if @user.valid?
     redirect '/users'

@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   end
 
   def password
-    @password ||= Password.new(hash_password)
+    @password ||= Password.new(hashed_password)
   end
 
   def password=(new_password)
     @password = Password.create(new_password)
-    self.hash_password = @password
+    self.hashed_password = @password
   end
 
 
